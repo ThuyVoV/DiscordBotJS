@@ -16,6 +16,7 @@ client.on('ready', () => {
     console.log("Bot is ready!!")
 })
 
+// ping pong
 client.on('messageCreate', (message) => {
     if (message.content === 'ping'){
         message.reply({
