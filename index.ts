@@ -15,11 +15,12 @@ const client = new DiscordJS.Client({
 client.on('ready', () => {
     console.log("Bot is ready!!")
 
-    // test guild
+    // createe command for the specific guild with this iD
     const guildId = '504540136055242765'
     const guild = client.guilds.cache.get(guildId)
     let commands 
 
+    // if guild doesnt exist, make it global
     if (guild){
         commands = guild.commands
     }
@@ -30,6 +31,19 @@ client.on('ready', () => {
     commands?.create({
         name: 'ping',
         description: 'reply pong'
+    })
+
+    commands?.create({
+        name: 'bloop',
+        description: 'idk',
+        options: [
+            {
+                name: 'bleh',
+                description: "idk",
+                required: true,
+                type: DiscordJS.Constants.ApplicationCommandOptionTypes.STRING
+            }
+        ]
     })
 
     commands?.create({
@@ -57,19 +71,17 @@ client.on('messageCreate', (message) => {
     if (message.content === 'bam'){
         message.channel.send(`${message.channel.valueOf()}`)
     }   
-
 })
 
 client.on('interactionCreate', async (interaction) => {
-    if (!interaction.isCommand()){
-        return
-    }
+    if (!interaction.isCommand()) return
+    
 
     const {commandName, options} = interaction
 
     if ( commandName === 'ping'){
         interaction.reply({
-            content: "ping",
+            content: `pong ${interaction.user.tag} ${interaction.user.displayAvatarURL()}`,
             ephemeral: false
         })
     }
@@ -79,6 +91,13 @@ client.on('interactionCreate', async (interaction) => {
 
         interaction.reply({
             content: `${num1+num2}`
+        })
+    }
+    else if ( commandName === 'bloop'){
+        const name = options.getString('bleh')
+
+        interaction.reply({
+            content: `${name}`
         })
     }
 })
