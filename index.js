@@ -8,10 +8,10 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 client.commands = new Collection();
 
 // command handler
-const commandFolders = fs.readdirSync('./commands') //.filter(file => file.endsWith('.js'));
+// loops through commands folder and find the command files in each subfolder
+const commandFolders = fs.readdirSync('./commands')
 for (const folder of commandFolders) {
     const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith(".js"));
-        
     for (const file of commandFiles) {
         const command = require(`./commands/${folder}/${file}`);
         // Set a new item in the Collection
@@ -19,6 +19,12 @@ for (const folder of commandFolders) {
         client.commands.set(command.data.name, command);
     }
 }
+
+// const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+// for (const file of commandFiles) {
+// 	const command = require(`./commands/${file}`);
+// 	client.commands.set(command.data.name, command);
+// }
 
 //event handler
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
