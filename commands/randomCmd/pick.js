@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const wait = require('util').promisify(setTimeout);
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -14,7 +15,13 @@ module.exports = {
             ),
 
 	async execute(interaction) {
-		await interaction.reply(`${interaction.options.getString("category")} hehe`)
+		await interaction.reply(`${interaction.options.getString("category")}`)
+        await wait(1000)
+        const sayThis = interaction.fetchReply()
+        await interaction.editReply("im mad!!")
+        await wait(1000)
+        await interaction.fetchReply().then( reply => interaction.editReply(`jk im not mad ${sayThis.getString}`))
+        .catch(console.error);
         
 	},
 };
