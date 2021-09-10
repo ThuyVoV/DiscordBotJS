@@ -27,7 +27,7 @@ module.exports = {
         //const emote = await message.guild.emojis.cache.find(emoji => emoji.name == ":cat:")
         //message.react(emote)
         //const emote = message.guild.emojis.cache.find(e => e.name === "shuffle1")
-        const emote = interaction.client.emojis.cache.find(emote => emote.name === 'cat')
+        const emote = interaction.client.emojis.cache.first()
         message.react(emote)
         console.log(emote.name)
         
