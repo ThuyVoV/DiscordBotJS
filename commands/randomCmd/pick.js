@@ -15,13 +15,11 @@ module.exports = {
             ),
 
 	async execute(interaction) {
-		await interaction.reply(`${interaction.options.getString("category")}`)
-        await wait(1000)
-        const sayThis = interaction.fetchReply()
-        await interaction.editReply("im mad!!")
-        await wait(1000)
-        await interaction.fetchReply().then( reply => interaction.editReply(`jk im not mad ${sayThis.getString}`))
-        .catch(console.error);
-        
+        // const message = await interaction.reply('You can react with Unicode emojis!', { fetchReply: true })
+        await interaction.reply('You can react with Unicode emojis!');
+        const message = await interaction.fetchReply()
+        message.react("🐷")
+
+        //message.react('😄') 
 	},
 };
