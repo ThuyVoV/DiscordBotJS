@@ -22,12 +22,14 @@ module.exports = {
         await interaction.editReply(`:${chose}:`)
         const message = await interaction.fetchReply()
         console.log(chose, typeof chose)
-
-        const emote = message.guild.emojis.cache.get("886004309429469254")
+        
+        const emojiName = "attackedpanda"
+        const emote = interaction.client.emojis.cache.find(emojis => emojis.name === emojiName)
+        //const emote = message.guild.emojis.cache.get("886004309429469254")
         message.react(emote)
-        message.react("🐷") 
-        message.react("🐱")
-        message.react("🐶")
+        // message.react("🐷") 
+        // message.react("🐱")
+        // message.react("🐶")
         console.log(emote.name) 
 	},
 };
