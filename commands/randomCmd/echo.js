@@ -12,5 +12,7 @@ module.exports = {
 
 	async execute(interaction) {
 		await interaction.reply(`you said: ${interaction.options.getString("input")}`);
+		const channel = interaction.client.channels.cache.get("742104586315104347")
+		channel.send(interaction.options.getString("input"))
 	},
 };
