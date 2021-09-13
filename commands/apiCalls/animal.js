@@ -19,14 +19,14 @@ module.exports = {
         //await interaction.reply(animal)
         try{
             if (animal === 'cat'){
-                let haha = await axios.get("https://api.thecatapi.com/v1/images/search")
-                console.log(haha.data[0].url)
-                await interaction.reply(haha.data[0].url)
+                let pic = await axios.get("https://api.thecatapi.com/v1/images/search")
+                console.log(pic.data[0].url)
+                await interaction.reply(pic.data[0].url)
             }
             else if ( animal === 'dog'){
-                let haha = await axios.get("https://dog.ceo/api/breeds/image/random")
-                console.log(haha.data.message)
-                await interaction.reply(haha.data.message)
+                let pic = await axios.get("https://dog.ceo/api/breeds/image/random")
+                console.log(pic.data.message)
+                await interaction.reply(pic.data.message)
             }
         }
         catch{
