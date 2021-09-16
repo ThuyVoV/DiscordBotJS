@@ -33,5 +33,16 @@ for (const file of eventFiles) {
 	}
 }
 
+//onmsg create handler
+const messageFiles = fs.readdirSync('./onMessageCreate').filter(file => file.endsWith('.js'));
+for (const file of messageFiles) {
+	const event = require(`./onMessageCreate/${file}`);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
+	}
+}
+
 // Login to Discord with your client's token
 client.login(token);

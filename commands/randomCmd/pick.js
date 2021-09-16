@@ -49,11 +49,10 @@ module.exports = {
             else if (chose === 'cat'){
                 message.react("🐱")
                 console.log("in cat")
-                const something = message.reactions.cache.first()
+                const something = message.reactions.cache.first(2)
                 // const something = await message.reactions.cache.find(emojis => emojis.id === "attackedpanda")
                 console.log(something)
                 //await message.reactions.cache.get('886004309429469254').remove()
-
             }
             else if (chose==="pig"){
                 message.react("🐷")
