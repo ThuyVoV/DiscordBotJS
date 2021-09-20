@@ -1,17 +1,22 @@
 module.exports = {
     async heart(message) {
-
-        if (message.content.toLowerCase() === "oink") {
+        if (message.content.toLowerCase().includes("oink")) {//} === "oink") {
             await message.react("🐷")
             await message.react("886004309429469254")
-
+            await message.react("🐱")
 
             //const emote = 
-            const emote = message.reactions.cache.first(2)
-            console.log(emote.forEach((e, i) =>
-                console.log("hello", `@@this is i: ${i}@@`, e._emoji.name, e._emoji.id, e.count)
-            ))
-            console.log(emote)
+            const emote = message.reactions.cache.first(4)
+            // console.log(message.reactions.cache.size)
+            // console.log(emote.length)
+            console.log(emote.forEach((e, i) => {
+                message.channel.send(`hi ${e._emoji.name} -- ${i}`)
+                // if (i < emote.length) {
+                //     message.channel.send(`hi ${i}`)
+                //     //console.log("hello", `@@this is i: ${i}@@`, e._emoji.name, e._emoji.id, e.count)
+                // }
+            }))
+            //console.log(emote)
             //console.log(emote[0])
         }
 
