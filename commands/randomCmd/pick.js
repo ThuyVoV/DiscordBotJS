@@ -20,13 +20,8 @@ module.exports = {
             // const message = await interaction.reply('You can react with Unicode emojis!', { fetchReply: true })
             await interaction.reply(`You chose: ${chose}!`);
             await wait(1000)
-
-
             await interaction.editReply(`:${chose}:`)
-            await interaction.editReply(`WEEEWOOO`)
-
             let message = await interaction.fetchReply()
-
 
             const emojiName = "attackedpanda"
             const emote = interaction.client.emojis.cache.find(emojis => emojis.name === emojiName)
@@ -38,7 +33,6 @@ module.exports = {
                 // message.react("🐶"),
             ])
 
-            console.log("THIS IS THE MESSAGE CONTENT 1:", message.content)
             // for (const x of interaction.client.emojis.cache){
             //     console.log("hi", x.name)
             // }
@@ -46,20 +40,30 @@ module.exports = {
             //interaction.client.emojis.cache.each(x => console.log("hi", x.name, x.id))
 
             //try{
+            //message = await interaction.fetchReply()
             if (chose === 'dog') {
-                message.react("🐶")
-                const aa = message.reactions.cache.get("886004309429469254")
-                console.log(aa.name)
+                //message = await interaction.fetchReply()
+                await message.react("🐶")
+                //message = await interaction.fetchReply()
+                const aa = await message.reactions.cache.first(4)
+                await message.channel.send(`${message.reactions.cache.size}`)
+                await console.log(`${message.reactions.cache.size}`)
+                console.log("haha", aa)
                 await message.reactions.removeAll()
             }
             else if (chose === 'cat') {
-                message.react("🐱")
+                await message.react("🐱")
                 console.log("in cat")
                 console.log("THIS IS THE MESSAGE CONTENT 2:", message.content)
-                const something = message.reactions.cache.first(2)
+                let something = message.reactions.cache.first(2)
                 // const something = await message.reactions.cache.find(emojis => emojis.id === "attackedpanda")
                 console.log("thi sis something", something)
                 //await message.reactions.cache.get('886004309429469254').remove()
+
+                // let ok = await interaction.fetchReply()
+                // console.log(ok.content)
+                // something = ok.reactions.cache.first(2)
+                // console.log("thi sis something2", something)
             }
             else if (chose === "pig") {
                 message.react("🐷")
